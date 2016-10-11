@@ -6,10 +6,19 @@ Rails.application.routes.draw do
   resource :user do
     get 'retire'
   end
-
   resources :events do
     resources :tickets
   end
+
+  #500エラーハンドリング実装例.作成してないアクションは500エラーで処理されるようになる
+  # resource :user, only: :destroy do
+  #   get 'retire'
+  # end
+  # resources :events, except: :index do
+  #   resources :tickets, only: [:new, :create, :destroy]
+  # end
+
+  match '*path' => 'application#error404', via: :all
 
 
   # The priority is based upon order of creation: first created -> highest priority.
