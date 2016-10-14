@@ -51,3 +51,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'factory_girl_rails', '~> 4.4.1'
 end
+
+group :test do
+  gem 'shoulda-matchers', '~> 2.6.0'
+end
