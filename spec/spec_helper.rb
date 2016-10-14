@@ -14,6 +14,7 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'factory_girl_rails'
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 # The settings below are suggested to provide a good initial experience
