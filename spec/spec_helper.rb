@@ -14,9 +14,7 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require 'factory_girl_rails'
-RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin
@@ -77,4 +75,26 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 =end
+ENV["RAILS_ENV"] ||= 'test'
+require File.expand_path("../../config/environment",  __FILE__)
+require 'rspec/rails'
+
+require 'capybara/rails'
+require 'capybara/rspec'
+
+require 'factory_girl_rails'
+
+RSpec.configure do |config|
+  config.include FactoryGirl::Syntax::Methods
+  config.before(:all, type: :feature) do
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
+        provider: 'twitter',
+        uid: '12345',
+        info: {
+            nickname: 'nishina',
+            image: 'http://example.con/nishina.jpg'
+        }
+                                                                 })
+  end
 end
