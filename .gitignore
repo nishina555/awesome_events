@@ -20,3 +20,5 @@
 *.iws
 *.iml
 *.ipr
+
+/config/secrets.yml
